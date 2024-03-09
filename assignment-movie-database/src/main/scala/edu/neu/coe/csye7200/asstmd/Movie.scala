@@ -128,14 +128,9 @@ object Movie extends App {
     // Hint: form a new list which is consisted by the elements in list in position indices. Int* means array of Int.
     // 6 points
     val result: Seq[String] = {
-<<<<<<< HEAD
       // TO BE IMPLEMENTED
       // STUB
        for ( i <- indices) yield list(i)
-=======
-      // TO BE IMPLEMENTED 
-       ???
->>>>>>> upstream/Spring2024
       // END
     }
     result.toList
@@ -218,7 +213,7 @@ object Rating {
   // Hint: This should similar to apply method in Object Name. The parameter of apply in case match should be same as case class Rating
   // 13 points
   def apply(s: String): Rating = {
-<<<<<<< HEAD
+
 // TO BE IMPLEMENTED
     // STUB
     val l = for (ws <- rRating.unapplySeq(s)) yield for (w <- ws) yield Option(w)
@@ -227,10 +222,6 @@ object Rating {
       case Some(Seq(Some(code), _, maybeAge)) => Rating(code, maybeAge.flatMap(s => Try(s.toInt).toOption))
       case x => throw ParseException(s"parse error in Name: $s (parsed as $x)")
     }
-=======
-// TO BE IMPLEMENTED 
-     ???
->>>>>>> upstream/Spring2024
     // END
   }
 }
