@@ -138,9 +138,17 @@ object WebCrawler extends App {
         // In the latter, use the method createURL(Option[URL], String) to get the appropriate URL for a relative link.
         // Don't forget to run it through validateURL.
         // 16 points.
-        def getURLs(ns: Node): Seq[Try[URL]] =
-// TO BE IMPLEMENTED 
- ???
+        def getURLs(ns: Node): Seq[Try[URL]] = {
+        for {
+            a <- ns \\ "a"
+        } yield {
+            for {
+                url <- createURL(Some(url), (a \ "@href").text)
+                validatedUrl <- validateURL(url) // Validate the created URL
+            } yield validatedUrl
+        }
+
+        }
 // END SOLUTION
 
         def getLinks(g: String): Try[Seq[URL]] = {
@@ -149,9 +157,14 @@ object WebCrawler extends App {
         }
         // Hint: write as a for-comprehension, using getURLContent (above) and getLinks above. You will also need MonadOps.asFuture
         // 9 points.
+        //Future[Seq[URL]] final output
+        // getURLContent  url : Future[String]
+        // getLinks STRING : Try[Seq[URL]]
+        //asFuture[X](xy: Try[Seq[URL]): Future[Seq[URL]]
 
-// TO BE IMPLEMENTED 
-         ???
+
+        //for a given url, first get the CONTENT, Future is also a String Wrapper and therefore a pseudo collection
+        for {contentString <- getURLContent(url); c <- MonadOps.asFuture(getLinks(contentString))} yield c
         // END SOLUTION
     }
 
